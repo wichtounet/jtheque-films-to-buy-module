@@ -1,5 +1,10 @@
 News
 
+* 04.12.2009 JTheque Films Module 1.4.1
+
+    I just released JTheque Films Module 1.4.1. This new version use now JTheque Core 2.0.2 and follow
+    the Maven rules for the folder architecture. More, the code has had a big lifting. 
+
 * 25.09.2009  New site
 
     I'm happy to annonce you the release of a new for JTheque Films To Buy Module. This new site
