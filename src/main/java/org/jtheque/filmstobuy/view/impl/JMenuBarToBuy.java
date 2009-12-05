@@ -32,11 +32,6 @@ import javax.swing.JMenuBar;
 public final class JMenuBarToBuy extends JMenuBar {
     private static final long serialVersionUID = -6754057123605990123L;
 
-    private final Action addAction;
-    private final Action removeAction;
-    private final Action editAction;
-    private final Action closeAction;
-
     /**
      * Construct a new <code>JMenuBarToBuy</code>.
      *
@@ -47,20 +42,9 @@ public final class JMenuBarToBuy extends JMenuBar {
      */
     public JMenuBarToBuy(Action addAction, Action removeAction, Action editAction, Action closeAction) {
         super();
-
-        this.addAction = addAction;
-        this.removeAction = removeAction;
-        this.editAction = editAction;
-        this.closeAction = closeAction;
-    }
-
-    /**
-     * Build the view.
-     */
-    @PostConstruct
-    private void build() {
+        
         JMenu menu = new JThequeMenu("menu.tobuy");
-
+        
         menu.add(new JThequeMenuItem(addAction));
         menu.add(new JThequeMenuItem(editAction));
         menu.add(new JThequeMenuItem(removeAction));

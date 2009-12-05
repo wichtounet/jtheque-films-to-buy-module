@@ -16,7 +16,8 @@ package org.jtheque.filmstobuy.persistence.od.impl;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.filmstobuy.persistence.od.able.FilmToBuy;
+import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.properties.IPropertiesManager;
 
 /**
  * A film to buy implementation.
@@ -47,36 +48,6 @@ public final class FilmToBuyImpl extends AbstractFilmToBuy {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final FilmToBuy other = (FilmToBuy) obj;
-
-        if (getTitle() == null) {
-            if (other.getTitle() != null) {
-                return false;
-            }
-        } else if (!getTitle().equals(other.getTitle())) {
-            return false;
-        }
-
-        if (getDate() == null) {
-            if (other.getDate() != null) {
-                return false;
-            }
-        } else if (getDate().intValue() != other.getDate().intValue()) {
-            return false;
-        }
-
-        return true;
+        return Managers.getManager(IPropertiesManager.class).areEquals(this, obj, "title", "date");
     }
 }
