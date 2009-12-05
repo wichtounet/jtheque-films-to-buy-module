@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jtheque="http://www.jtheque.com/schema/jtheque"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.jtheque.com/schema/jtheque
+            http://www.jtheque.com/schema/jtheque/jtheque.xsd"
+       default-lazy-init="true">
+
+    <bean id="filmsToBuyModule" class="org.jtheque.filmstobuy.FilmsToBuyModule" lazy-init="false">
+        <constructor-arg>
+            <bean class="org.jtheque.filmstobuy.services.impl.file.XMLBackupWriter"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.jtheque.filmstobuy.services.impl.file.JTDBackupWriter"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.jtheque.filmstobuy.services.impl.file.XMLBackupReader"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.jtheque.filmstobuy.services.impl.file.JTDBackupReader"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.jtheque.filmstobuy.services.impl.file.DBV4BackupReader"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="toBuyController" class="org.jtheque.filmstobuy.controller.impl.ToBuyController"/>
+
+    <bean id="daoFilmsToBuy" class="org.jtheque.filmstobuy.persistence.dao.impl.DaoFilmsToBuy"/>
+
+    <bean id="filmsToBuyService" class="org.jtheque.filmstobuy.services.impl.FilmsToBuyService"/>
+
+    <jtheque:proxy id="filmsToBuyView" type="org.jtheque.filmstobuy.view.impl.frame.FilmsToBuyView"/>
+
+    <bean id="_filmsToBuyView" class="org.jtheque.filmstobuy.view.impl.frame.FilmsToBuyView">
+        <constructor-arg ref="_mainView"/>
+        <property name="addAction" ref="addFilmToBuyAction"/>
+        <property name="editAction" ref="editFilmToBuyAction"/>
+        <property name="removeAction" ref="deleteFilmToBuyAction"/>
+        <property name="closeAction" ref="closeFilmsToBuyAction"/>
+        <property name="tableModel" ref="filmsToBuyModel"/>
+        <property name="JMenuBar" ref="filmsToBuyMenuBar"/>
+    </bean>
+
+    <bean id="filmsToBuyMenuBar" class="org.jtheque.filmstobuy.view.impl.JMenuBarToBuy">
+        <constructor-arg ref="addFilmToBuyAction"/>
+        <constructor-arg ref="deleteFilmToBuyAction"/>
+        <constructor-arg ref="editFilmToBuyAction"/>
+        <constructor-arg ref="closeFilmsToBuyAction"/>
+    </bean>
+
+    <bean id="filmsToBuyModel" class="org.jtheque.filmstobuy.view.impl.model.FilmsToBuyTableModel"/>
+
+    <jtheque:display id="displayFilmsToBuyViewAction" key="jtheque.actions.tobuy" view="filmsToBuyView"/>
+    <jtheque:close id="closeFilmsToBuyAction" key="tobuy.actions.ok" view="filmsToBuyView"/>
+
+    <bean id="addFilmToBuyAction" class="org.jtheque.filmstobuy.view.impl.actions.AcAddFilmToBuy"/>
+    <bean id="editFilmToBuyAction" class="org.jtheque.filmstobuy.view.impl.actions.AcEditFilmToBuy"/>
+    <bean id="deleteFilmToBuyAction" class="org.jtheque.filmstobuy.view.impl.actions.AcRemoveFilmToBuy"/>
+
+</beans>

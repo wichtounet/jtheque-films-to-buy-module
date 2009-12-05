@@ -1,0 +1,109 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://maven.apache.org/POM/4.0.0
+            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.jtheque</groupId>
+        <artifactId>jtheque-collections</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jtheque</groupId>
+    <artifactId>jtheque-filmstobuy-module</artifactId>
+    <packaging>jar</packaging>
+    <name>JTheque Films To Buy Module</name>
+    <description>Module permettant de gÃ©rer une liste de films Ã  acheter</description>
+    <version>1.3.1-SNAPSHOT</version>
+
+    <url>http://jtheque.developpez.com/collections/filmstobuy</url>
+
+    <distributionManagement>
+        <site>
+            <id>jtheque-web-server</id>
+            <name>JTheque FTP Server</name>
+            <url>ftp://developpez.com/collections/filmstobuy</url>
+        </site>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>Redmine</system>
+        <url>http://projets.developpez.com/projects/jtheque-filmstobuy-mod/issues</url>
+    </issueManagement>
+
+    <scm>
+        <url>http://subversion.developpez.com/projets/JTheque/modules/filmstobuy/</url>
+        <connection>scm:svn:http://subversion.developpez.com/projets/JTheque/modules/filmstobuy/</connection>
+    </scm>
+
+    <build>
+        <directory>${env.BUILD_HOME}/modules/jtheque-filmstobuy-module</directory>
+        <outputDirectory>${env.BUILD_HOME}/modules/jtheque-filmstobuy-module/classes</outputDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <targetJdk>${java.version}</targetJdk>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jtheque</groupId>
+            <artifactId>jtheque-films-module</artifactId>
+            <version>1.4.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>
