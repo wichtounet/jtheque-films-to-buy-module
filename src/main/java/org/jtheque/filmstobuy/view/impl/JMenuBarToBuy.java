@@ -18,6 +18,10 @@ package org.jtheque.filmstobuy.view.impl;
 
 import org.jtheque.core.managers.view.impl.components.menu.JThequeMenu;
 import org.jtheque.core.managers.view.impl.components.menu.JThequeMenuItem;
+import org.jtheque.filmstobuy.view.impl.actions.AcAddFilmToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.AcEditFilmToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.AcRemoveFilmToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.CloseFilmToBuyViewAction;
 
 import javax.annotation.PostConstruct;
 import javax.swing.Action;
@@ -34,24 +38,19 @@ public final class JMenuBarToBuy extends JMenuBar {
 
     /**
      * Construct a new <code>JMenuBarToBuy</code>.
-     *
-     * @param addAction    The action to add a film to buy.
-     * @param removeAction The action to remove a film to buy.
-     * @param editAction   The action to edit a film to buy.
-     * @param closeAction  The action to close the view.
      */
-    public JMenuBarToBuy(Action addAction, Action removeAction, Action editAction, Action closeAction) {
+    public JMenuBarToBuy() {
         super();
         
         JMenu menu = new JThequeMenu("menu.tobuy");
         
-        menu.add(new JThequeMenuItem(addAction));
-        menu.add(new JThequeMenuItem(editAction));
-        menu.add(new JThequeMenuItem(removeAction));
+        menu.add(new JThequeMenuItem(new AcAddFilmToBuy()));
+        menu.add(new JThequeMenuItem(new AcEditFilmToBuy()));
+        menu.add(new JThequeMenuItem(new AcRemoveFilmToBuy()));
 
         menu.addSeparator();
 
-        menu.add(new JThequeMenuItem(closeAction));
+        menu.add(new JThequeMenuItem(new CloseFilmToBuyViewAction()));
 
         add(menu);
     }

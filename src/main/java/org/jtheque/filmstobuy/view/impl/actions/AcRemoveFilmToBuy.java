@@ -18,6 +18,7 @@ package org.jtheque.filmstobuy.view.impl.actions;
 
 import org.jdesktop.swingx.JXTable;
 import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.beans.IBeansManager;
 import org.jtheque.core.managers.language.ILanguageManager;
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
 import org.jtheque.filmstobuy.controller.able.IToBuyController;
@@ -32,11 +33,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcRemoveFilmToBuy extends JThequeAction {
-    private static final long serialVersionUID = -8901642631311345539L;
-
-    @Resource
-    private IToBuyController toBuyController;
-
     /**
      * Construct a new AcRemoveFilmToBuy.
      */
@@ -46,6 +42,8 @@ public final class AcRemoveFilmToBuy extends JThequeAction {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
+        IToBuyController toBuyController = Managers.getManager(IBeansManager.class).<IToBuyController>getBean("toBuyController");
+
         JXTable table = toBuyController.getView().getTable();
 
         //Make sure that one or more films are selected

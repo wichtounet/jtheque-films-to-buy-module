@@ -23,11 +23,14 @@ import org.jtheque.core.managers.language.ILanguageManager;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingDialogView;
 import org.jtheque.core.utils.ui.PanelBuilder;
 import org.jtheque.filmstobuy.view.able.IFilmsToBuyView;
+import org.jtheque.filmstobuy.view.impl.JMenuBarToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.AcAddFilmToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.AcEditFilmToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.AcRemoveFilmToBuy;
+import org.jtheque.filmstobuy.view.impl.actions.CloseFilmToBuyViewAction;
 import org.jtheque.filmstobuy.view.impl.model.FilmsToBuyTableModel;
 import org.jtheque.utils.ui.GridBagUtils;
 
-import javax.annotation.PostConstruct;
-import javax.swing.Action;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import java.awt.Container;
@@ -41,8 +44,6 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuyView {
-    private static final long serialVersionUID = 701687081413222286L;
-
     /**
      * The table to display the films to buy.
      */
@@ -52,12 +53,6 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
      * The table model.
      */
     private FilmsToBuyTableModel tableModel;
-
-    /* Actions */
-    private Action addAction;
-    private Action removeAction;
-    private Action editAction;
-    private Action closeAction;
 
     /* Instances */
     private final ILanguageManager resources = Managers.getManager(ILanguageManager.class);
@@ -69,13 +64,9 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
      */
     public FilmsToBuyView(Frame parent) {
         super(parent);
-    }
 
-    /**
-     * Build the view.
-     */
-    @PostConstruct
-    private void build() {
+        setJMenuBar(new JMenuBarToBuy());
+
         setTitleKey("filmstobuy.view.title");
         setContentPane(buildContentPane());
 
@@ -93,6 +84,11 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
 
         updateHeaders();
 
+        AcRemoveFilmToBuy removeAction = new AcRemoveFilmToBuy();
+        AcAddFilmToBuy addAction = new AcAddFilmToBuy();
+
+        tableModel = new FilmsToBuyTableModel();
+
         tableFilms = new JXTable(tableModel);
         tableFilms.setSortable(true);
         tableFilms.getTableHeader().setReorderingAllowed(false);
@@ -108,7 +104,7 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
         builder.addScrolled(tableFilms, builder.gbcSet(0, 0, GridBagUtils.BOTH, GridBagUtils.FIRST_LINE_START, 1.0, 1.0));
 
         builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL),
-                addAction, removeAction, editAction, closeAction);
+                addAction, removeAction, new AcEditFilmToBuy(), new CloseFilmToBuyViewAction());
 
         return builder.getPanel();
     }
@@ -139,50 +135,5 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
 
     @Override
     protected void validate(Collection<JThequeError> errors) {
-    }
-
-    /**
-     * Set the table model of the view.
-     *
-     * @param tableModel The table model.
-     */
-    public void setTableModel(FilmsToBuyTableModel tableModel) {
-        this.tableModel = tableModel;
-    }
-
-    /**
-     * Set the add action.
-     *
-     * @param addAction The action to add a film.
-     */
-    public void setAddAction(Action addAction) {
-        this.addAction = addAction;
-    }
-
-    /**
-     * Set the remove action.
-     *
-     * @param removeAction The action to remove a film.
-     */
-    public void setRemoveAction(Action removeAction) {
-        this.removeAction = removeAction;
-    }
-
-    /**
-     * Set the edit action.
-     *
-     * @param editAction The action to edit a film.
-     */
-    public void setEditAction(Action editAction) {
-        this.editAction = editAction;
-    }
-
-    /**
-     * Set the close action.
-     *
-     * @param closeAction The action to close a film.
-     */
-    public void setCloseAction(Action closeAction) {
-        this.closeAction = closeAction;
     }
 }

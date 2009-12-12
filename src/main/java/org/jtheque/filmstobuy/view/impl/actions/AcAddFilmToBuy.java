@@ -17,6 +17,7 @@ package org.jtheque.filmstobuy.view.impl.actions;
  */
 
 import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.beans.IBeansManager;
 import org.jtheque.core.managers.error.JThequeError;
 import org.jtheque.core.managers.language.ILanguageManager;
 import org.jtheque.core.managers.view.able.IViewManager;
@@ -35,11 +36,6 @@ import java.util.Collection;
  * @author Baptiste Wicht
  */
 public final class AcAddFilmToBuy extends JThequeAction {
-    private static final long serialVersionUID = 4755683634532889709L;
-
-    @Resource
-    private IToBuyController toBuyController;
-
     /**
      * Construct a new AcAddFilmToBuy.
      */
@@ -57,7 +53,7 @@ public final class AcAddFilmToBuy extends JThequeAction {
         ValidationUtils.rejectIfEmpty(title, "tobuy.dialogs.newFilm.title", errors);
 
         if (errors.isEmpty()) {
-            toBuyController.newFilmToBuy(title);
+            Managers.getManager(IBeansManager.class).<IToBuyController>getBean("toBuyController").newFilmToBuy(title);
         }
     }
 }

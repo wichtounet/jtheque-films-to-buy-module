@@ -18,6 +18,7 @@ package org.jtheque.filmstobuy.view.impl.actions;
 
 import org.jdesktop.swingx.JXTable;
 import org.jtheque.core.managers.Managers;
+import org.jtheque.core.managers.beans.IBeansManager;
 import org.jtheque.core.managers.language.ILanguageManager;
 import org.jtheque.core.managers.view.impl.actions.JThequeAction;
 import org.jtheque.filmstobuy.controller.able.IToBuyController;
@@ -34,14 +35,6 @@ import java.awt.event.ActionEvent;
  * @author Baptiste Wicht
  */
 public final class AcEditFilmToBuy extends JThequeAction {
-    private static final long serialVersionUID = 3129358259878533224L;
-
-    @Resource
-    private IFilmsToBuyService filmsToBuyService;
-
-    @Resource
-    private IToBuyController toBuyController;
-
     /**
      * Construct a new AcEditFilmToBuy.
      */
@@ -51,6 +44,9 @@ public final class AcEditFilmToBuy extends JThequeAction {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
+        IFilmsToBuyService filmsToBuyService = Managers.getManager(IBeansManager.class).getBean("filmsToBuyService");
+        IToBuyController toBuyController = Managers.getManager(IBeansManager.class).getBean("toBuyController");
+
         JXTable table = toBuyController.getView().getTable();
 
         //Make sure that only one film is selected
