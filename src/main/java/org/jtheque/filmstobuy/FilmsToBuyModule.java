@@ -39,7 +39,7 @@ import org.jtheque.filmstobuy.persistence.FilmsToBuySchema;
  * @author Baptiste Wicht
  */
 @Module(id = "jtheque-filmstobuy-module", i18n = "classpath:org/jtheque/filmstobuy/i18n/filmstobuy",
-        version = "1.3.1", core = "2.0.2", jarFile = "jtheque-filmstobuy-module-1.3.1.jar",
+        version = "1.3.2", core = "2.0.2", jarFile = "jtheque-filmstobuy-module-1.3.2.jar",
         dependencies = {"jtheque-films-module"}, updateURL = "http://jtheque.developpez.com/public/versions/FilmsToBuyModule.versions")
 public final class FilmsToBuyModule {
     private Feature toBuyFeature;

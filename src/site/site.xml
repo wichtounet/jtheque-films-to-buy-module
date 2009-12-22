@@ -18,7 +18,9 @@
             <item name="JTheque Films To Buy Module" href="http://jtheque.developpez.com/collections/filmstobuy/"/>
         </breadcrumbs>
 
-        <menu ref="parent"/>
+        <menu name="Parent">
+            <item name="JTheque Collections" href="http://jtheque.developpez.com/collections/"/>
+        </menu>
 
         <menu name="JTheque Films To Buy Module">
             <item name="Introduction" href="index.html"/>
