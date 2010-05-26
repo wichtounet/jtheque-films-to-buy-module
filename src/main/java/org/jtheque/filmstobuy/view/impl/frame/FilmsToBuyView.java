@@ -17,10 +17,8 @@ package org.jtheque.filmstobuy.view.impl.frame;
  */
 
 import org.jdesktop.swingx.JXTable;
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.error.JThequeError;
-import org.jtheque.core.managers.language.ILanguageManager;
-import org.jtheque.core.managers.view.impl.frame.abstraction.SwingDialogView;
+import org.jtheque.core.managers.view.able.components.IModel;
+import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
 import org.jtheque.core.utils.ui.PanelBuilder;
 import org.jtheque.filmstobuy.view.able.IFilmsToBuyView;
 import org.jtheque.filmstobuy.view.impl.JMenuBarToBuy;
@@ -33,17 +31,14 @@ import org.jtheque.utils.ui.GridBagUtils;
 
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
-import java.awt.Container;
-import java.awt.Frame;
 import java.awt.event.KeyEvent;
-import java.util.Collection;
 
 /**
  * This class represent the graphic interface in which we can add film we want to buy.
  *
  * @author Baptiste Wicht
  */
-public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuyView {
+public final class FilmsToBuyView extends SwingBuildedDialogView<IModel> implements IFilmsToBuyView {
     /**
      * The table to display the films to buy.
      */
@@ -54,34 +49,15 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
      */
     private FilmsToBuyTableModel tableModel;
 
-    /* Instances */
-    private final ILanguageManager resources = Managers.getManager(ILanguageManager.class);
-
-    /**
-     * Construct a new <code>JFrameFilmsToBuy</code>.
-     *
-     * @param parent The parent frame.
-     */
-    public FilmsToBuyView(Frame parent) {
-        super(parent);
-
+    @Override
+    protected void initView(){
         setJMenuBar(new JMenuBarToBuy());
 
         setTitleKey("filmstobuy.view.title");
-        setContentPane(buildContentPane());
-
-        pack();
-        setLocationRelativeTo(getOwner());
     }
 
-    /**
-     * Build the content pane.
-     *
-     * @return The content pane.
-     */
-    private Container buildContentPane() {
-        PanelBuilder builder = new PanelBuilder();
-
+    @Override
+    protected void buildView(PanelBuilder builder){
         updateHeaders();
 
         AcRemoveFilmToBuy removeAction = new AcRemoveFilmToBuy();
@@ -94,7 +70,7 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
         tableFilms.getTableHeader().setReorderingAllowed(false);
         tableFilms.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         tableFilms.setColumnControlVisible(true);
-        tableFilms.getColumnExt(resources.getMessage("filmstobuy.view.table.id")).setVisible(false);
+        tableFilms.getColumnExt(getMessage("filmstobuy.view.table.id")).setVisible(false);
         tableFilms.getActionMap().put("delete", removeAction);
         tableFilms.getActionMap().put("add", addAction);
         tableFilms.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "delete");
@@ -105,8 +81,6 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
 
         builder.addButtonBar(builder.gbcSet(0, 1, GridBagUtils.HORIZONTAL),
                 addAction, removeAction, new AcEditFilmToBuy(), new CloseFilmToBuyViewAction());
-
-        return builder.getPanel();
     }
 
     /**
@@ -114,9 +88,9 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
      */
     private void updateHeaders() {
         tableModel.setHeader(new String[]{
-                resources.getMessage("filmstobuy.view.table.id"),
-                resources.getMessage("filmstobuy.view.table.name"),
-                resources.getMessage("filmstobuy.view.table.date")});
+                getMessage("filmstobuy.view.table.id"),
+                getMessage("filmstobuy.view.table.name"),
+                getMessage("filmstobuy.view.table.date")});
     }
 
     @Override
@@ -130,10 +104,6 @@ public final class FilmsToBuyView extends SwingDialogView implements IFilmsToBuy
 
         updateHeaders();
 
-        tableFilms.getColumnExt(resources.getMessage("filmstobuy.view.table.id")).setVisible(false);
-    }
-
-    @Override
-    protected void validate(Collection<JThequeError> errors) {
+        tableFilms.getColumnExt(getMessage("filmstobuy.view.table.id")).setVisible(false);
     }
 }

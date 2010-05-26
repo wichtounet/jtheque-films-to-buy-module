@@ -69,6 +69,6 @@ public final class DeletedFilmToBuyEdit extends AbstractUndoableEdit {
 
     @Override
     public String getPresentationName() {
-        return Managers.getManager(ILanguageManager.class).getMessage("undo.edits.delete");
+        return "undo.edits.delete";
     }
 }

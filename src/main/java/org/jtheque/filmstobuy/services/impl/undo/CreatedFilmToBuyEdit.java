@@ -16,9 +16,6 @@ package org.jtheque.filmstobuy.services.impl.undo;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jtheque.core.managers.Managers;
-import org.jtheque.core.managers.beans.IBeansManager;
-import org.jtheque.core.managers.language.ILanguageManager;
 import org.jtheque.filmstobuy.persistence.od.able.FilmToBuy;
 import org.jtheque.filmstobuy.services.able.IFilmsToBuyService;
 
@@ -69,6 +66,6 @@ public final class CreatedFilmToBuyEdit extends AbstractUndoableEdit {
 
     @Override
     public String getPresentationName() {
-        return Managers.getManager(ILanguageManager.class).getMessage("undo.edits.create");
+        return "undo.edits.create";
     }
 }
