@@ -23,8 +23,6 @@ import org.jtheque.filmstobuy.view.impl.actions.AcEditFilmToBuy;
 import org.jtheque.filmstobuy.view.impl.actions.AcRemoveFilmToBuy;
 import org.jtheque.filmstobuy.view.impl.actions.CloseFilmToBuyViewAction;
 
-import javax.annotation.PostConstruct;
-import javax.swing.Action;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -41,9 +39,9 @@ public final class JMenuBarToBuy extends JMenuBar {
      */
     public JMenuBarToBuy() {
         super();
-        
+
         JMenu menu = new JThequeMenu("menu.tobuy");
-        
+
         menu.add(new JThequeMenuItem(new AcAddFilmToBuy()));
         menu.add(new JThequeMenuItem(new AcEditFilmToBuy()));
         menu.add(new JThequeMenuItem(new AcRemoveFilmToBuy()));

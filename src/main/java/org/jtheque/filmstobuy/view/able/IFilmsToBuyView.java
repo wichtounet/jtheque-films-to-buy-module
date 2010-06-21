@@ -1,7 +1,8 @@
 package org.jtheque.filmstobuy.view.able;
 
-import org.jdesktop.swingx.JXTable;
 import org.jtheque.core.managers.view.able.IWindowView;
+
+import org.jdesktop.swingx.JXTable;
 
 /**
  * A films to buy view specification.

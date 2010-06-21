@@ -16,7 +16,6 @@ package org.jtheque.filmstobuy.view.impl.actions;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdesktop.swingx.JXTable;
 import org.jtheque.core.managers.Managers;
 import org.jtheque.core.managers.beans.IBeansManager;
 import org.jtheque.core.managers.language.ILanguageManager;
@@ -25,8 +24,10 @@ import org.jtheque.filmstobuy.controller.able.IToBuyController;
 import org.jtheque.filmstobuy.persistence.od.able.FilmToBuy;
 import org.jtheque.filmstobuy.services.able.IFilmsToBuyService;
 
-import javax.annotation.Resource;
+import org.jdesktop.swingx.JXTable;
+
 import javax.swing.JOptionPane;
+
 import java.awt.event.ActionEvent;
 
 /**

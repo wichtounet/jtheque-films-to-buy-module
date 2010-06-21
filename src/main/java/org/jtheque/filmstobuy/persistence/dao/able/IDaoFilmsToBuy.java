@@ -40,6 +40,7 @@ public interface IDaoFilmsToBuy extends JThequeDao {
      * Returns the film identified by the id.
      *
      * @param id The id of the film
+     *
      * @return The film
      */
     FilmToBuy getFilmToBuy(int id);
@@ -55,6 +56,7 @@ public interface IDaoFilmsToBuy extends JThequeDao {
      * Delete a film to buy.
      *
      * @param film The film to buy.
+     *
      * @return true if the object is deleted else false.
      */
     boolean delete(FilmToBuy film);
@@ -63,6 +65,7 @@ public interface IDaoFilmsToBuy extends JThequeDao {
      * Delete the film to buy with this id.
      *
      * @param id The id of the film
+     *
      * @return true if the object is deleted else false.
      */
     boolean delete(int id);

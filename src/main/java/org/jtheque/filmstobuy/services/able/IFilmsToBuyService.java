@@ -76,6 +76,7 @@ public interface IFilmsToBuyService extends DataContainer<FilmToBuy> {
      * Return the film to buy denoted by a specific id.
      *
      * @param id The id we want to search for.
+     *
      * @return The corresponding film to buy else null if there is no film to buy with this.
      */
     FilmToBuy getFilmToBuy(int id);
@@ -84,6 +85,7 @@ public interface IFilmsToBuyService extends DataContainer<FilmToBuy> {
      * Delete a film to buy.
      *
      * @param filmToBuy The film to buy to delete.
+     *
      * @return true if the entity has been deleted else false.
      */
     boolean delete(FilmToBuy filmToBuy);

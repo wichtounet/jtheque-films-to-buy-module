@@ -16,7 +16,6 @@ package org.jtheque.filmstobuy.view.impl.frame;
  * along with JTheque.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import org.jdesktop.swingx.JXTable;
 import org.jtheque.core.managers.view.able.components.IModel;
 import org.jtheque.core.managers.view.impl.frame.abstraction.SwingBuildedDialogView;
 import org.jtheque.core.utils.ui.PanelBuilder;
@@ -29,8 +28,11 @@ import org.jtheque.filmstobuy.view.impl.actions.CloseFilmToBuyViewAction;
 import org.jtheque.filmstobuy.view.impl.model.FilmsToBuyTableModel;
 import org.jtheque.utils.ui.GridBagUtils;
 
+import org.jdesktop.swingx.JXTable;
+
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -50,14 +52,14 @@ public final class FilmsToBuyView extends SwingBuildedDialogView<IModel> impleme
     private FilmsToBuyTableModel tableModel;
 
     @Override
-    protected void initView(){
+    protected void initView() {
         setJMenuBar(new JMenuBarToBuy());
 
         setTitleKey("filmstobuy.view.title");
     }
 
     @Override
-    protected void buildView(PanelBuilder builder){
+    protected void buildView(PanelBuilder builder) {
         updateHeaders();
 
         AcRemoveFilmToBuy removeAction = new AcRemoveFilmToBuy();

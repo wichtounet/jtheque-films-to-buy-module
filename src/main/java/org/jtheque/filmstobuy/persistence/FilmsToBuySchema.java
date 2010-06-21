@@ -6,6 +6,7 @@ import org.jtheque.core.managers.schema.AbstractSchema;
 import org.jtheque.core.managers.schema.Insert;
 import org.jtheque.filmstobuy.persistence.dao.able.IDaoFilmsToBuy;
 import org.jtheque.utils.bean.Version;
+
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import javax.annotation.Resource;

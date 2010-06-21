@@ -25,7 +25,6 @@ import org.jtheque.core.managers.view.impl.actions.JThequeAction;
 import org.jtheque.core.utils.ui.ValidationUtils;
 import org.jtheque.filmstobuy.controller.able.IToBuyController;
 
-import javax.annotation.Resource;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collection;
